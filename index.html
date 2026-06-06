@@ -245,11 +245,6 @@
         <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
         Compartir invitación
       </button>
-      <button class="btn btn-wa" id="btnWhatsapp">
-        <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.2.1.7-.1 1.3Z"/></svg>
-        Enviar por WhatsApp
-      </button>
-      <button class="btn btn-soft" id="btnDescargarInv">Descargar imagen</button>
 
       <div class="qr-url" id="shareUrl"></div>
       <p class="pie"><a id="volver">← Volver al formulario</a></p>
@@ -484,21 +479,13 @@ document.getElementById("btnCompartir").addEventListener("click", () => {
   });
 });
 
-// WhatsApp: abre el chat con el texto + link (la imagen se adjunta aparte si se desea)
-document.getElementById("btnWhatsapp").addEventListener("click", () => {
-  const texto = textoInvitacion(urlLimpia());
-  window.open("https://wa.me/?text=" + encodeURIComponent(texto), "_blank");
-});
-
+// Respaldo para computador / navegadores sin "compartir": descarga la imagen.
 function descargarInvitacion(cv){
   const a = document.createElement("a");
   a.download = "invitacion-nuevas-generaciones.png";
   a.href = cv.toDataURL("image/png");
   a.click();
 }
-document.getElementById("btnDescargarInv").addEventListener("click", () => {
-  descargarInvitacion(document.getElementById("inviteCanvas"));
-});
 </script>
 </body>
 </html>

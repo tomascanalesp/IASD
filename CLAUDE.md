@@ -36,8 +36,10 @@ invitación (la arma Kate, comunicaciones). El mismo sitio genera ese QR.
 - Logos del pie ("Organizan") se cargan desde `assets/` (maranata-class.png,
   escuela-sabatica.png, gteen.png, ja.png); con `onerror` se ocultan si faltan.
 - Vista **Compartir** (`#compartir`): `construirInvitacion()` dibuja en un canvas
-  una imagen de invitación (datos del evento + QR) y permite compartirla por el
-  menú nativo (`navigator.share` con `files`), WhatsApp (`wa.me`) o descargarla.
+  una imagen de invitación (datos del evento + QR). Un único botón "Compartir
+  invitación" usa el menú nativo del celular (`navigator.share` con `files`), que
+  ya ofrece WhatsApp y todas las apps. En escritorio (sin `canShare`) el respaldo
+  descarga la imagen y abre WhatsApp Web con el texto.
 
 ## Convenciones
 
