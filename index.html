@@ -517,28 +517,29 @@ function construirInvitacion(cb){
 
     // datos del evento
     x.fillStyle = "#ffffff"; x.font = "600 48px Georgia, serif";
-    x.fillText(EVENTO.fecha + "  ·  " + EVENTO.hora, W/2, 652);
+    x.fillText(EVENTO.fecha + "  ·  " + EVENTO.hora, W/2, 648);
     x.fillStyle = "#ffffff"; x.font = "600 39px Georgia, serif";
-    x.fillText(EVENTO.lugar, W/2, 712);
-    x.fillStyle = "#a9b6cf"; x.font = "400 32px Georgia, serif";
-    envolverTexto(x, EVENTO.direccion, W/2, 762, 920, 44);
+    x.fillText(EVENTO.lugar, W/2, 706);
+    x.fillStyle = "#a9b6cf"; x.font = "400 31px Georgia, serif";
+    const yAddr = envolverTexto(x, EVENTO.direccion, W/2, 754, 940, 42);
 
-    // QR en tarjeta blanca
+    // QR en tarjeta blanca, ubicado SIEMPRE debajo de la dirección (sin solaparse)
+    const qs = 290, qx = W/2 - qs/2, qy = yAddr + 64, pad = 22;
     if(qrCanvas){
-      const qs = 300, qx = W/2 - qs/2, qy = 812;
+      const rr = 26, bx = qx-pad, by = qy-pad, bw = qs+pad*2, bh = qs+pad*2;
       x.fillStyle = "#fff";
-      const pad = 22, rr = 26, bx = qx-pad, by = qy-pad, bw = qs+pad*2, bh = qs+pad*2;
       x.beginPath();
       x.moveTo(bx+rr,by);x.arcTo(bx+bw,by,bx+bw,by+bh,rr);x.arcTo(bx+bw,by+bh,bx,by+bh,rr);
       x.arcTo(bx,by+bh,bx,by,rr);x.arcTo(bx,by,bx+bw,by,rr);x.closePath();x.fill();
       x.drawImage(qrCanvas, qx, qy, qs, qs);
     }
 
-    // pie con link
+    // pie con link, debajo del QR
+    const cardBottom = qy + qs + pad;
     x.fillStyle = "#a9b6cf"; x.font = "400 32px Georgia, serif";
-    x.fillText("Escanea el código o entra a:", W/2, 1212);
+    x.fillText("Escanea el código o entra a:", W/2, cardBottom + 58);
     x.fillStyle = "#ffe08a"; x.font = "600 30px Georgia, serif";
-    envolverTexto(x, url, W/2, 1258, 1000, 38);
+    envolverTexto(x, url, W/2, cardBottom + 102, 1000, 38);
 
     cb && cb(cv, url);
   }, 130);
