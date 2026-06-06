@@ -80,9 +80,10 @@ const EVENTO = {
 
 ## Logos de los grupos
 
-Los logos del pie ("Organizan") se cargan desde la carpeta `assets/`.
-Pon ahí los archivos `maranata-class.png`, `escuela-sabatica.png`, `gteen.png`
-y `ja.png` (ver `assets/LEEME-logos.md`). Si falta alguno, no se muestra.
+Los logos del pie ("Organizan") y el emblema del encabezado se cargan desde
+`assets/`: `iasd.png`, `maranata-class.png`, `gteen.png` y `ja.png` (ya incluidos).
+Si quieres cambiar alguno, reemplaza el archivo manteniendo el nombre. Si falta
+uno, simplemente no se muestra (no rompe la página).
 
 ## Compartir / invitar a un amigo
 

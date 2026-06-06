@@ -62,8 +62,9 @@ Ver `README.md` (pasos detallados). En resumen:
 
 - [x] Cargar fecha/hora/lugar reales del culto (13/06/2026, 10:00, Las Condes).
 - [x] Pegar la URL real de Google Apps Script en `ENDPOINT`.
-- [ ] Subir los 4 logos a `assets/` (ver `assets/LEEME-logos.md`).
-- [ ] Activar GitHub Pages (Settings → Pages → rama `main`, root).
+- [x] Subir los logos a `assets/` (iasd, maranata-class, gteen, ja).
+- [x] Activar GitHub Pages (Settings → Pages → rama `main`, root).
+- [ ] Actualizar el Apps Script desplegado para que guarde "Escuela Sabática".
 - [ ] (Opcional) Notificación por correo en el script (`MailApp.sendEmail`) al
       llegar cada inscripción.
 - [ ] (Opcional) Validación de teléfono chileno (+56 9 ...).
