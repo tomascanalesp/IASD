@@ -145,6 +145,10 @@
   .btn-soft{background:#fff;color:var(--navy);border:1.5px solid var(--line);
     box-shadow:none;font-size:16px}
   .btn-soft:hover{box-shadow:var(--sombra-sm)}
+  /* botón secundario apagado (blanco y negro), para restarle protagonismo */
+  .btn-ghost{background:#f3f4f6;color:#6b7280;border:1.5px solid #e5e7eb;
+    box-shadow:none;font-size:15.5px;font-weight:600;filter:grayscale(1)}
+  .btn-ghost:hover{transform:none;box-shadow:var(--sombra-sm)}
   .btn .ic{display:inline-block;vertical-align:-3px;margin-right:7px}
 
   .pie{text-align:center;margin-top:20px;font-size:13px;color:var(--ink-soft)}
@@ -288,8 +292,8 @@
         <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"></path></svg></div>
         <h2>¡Inscripción enviada!</h2>
         <p>Gracias por confirmar. ¡Nos vemos en el culto Nuevas Generaciones!</p>
-        <button class="btn" id="btnOtra">Inscribir a otra persona</button>
-        <button class="btn btn-soft" id="btnInvitarOk">Compartir e invitar a un amigo</button>
+        <button class="btn" id="btnInvitarOk">Compartir e invitar a un amigo</button>
+        <button class="btn btn-ghost" id="btnOtra">Inscribir a otra persona</button>
       </div>
     </div>
 
@@ -303,7 +307,7 @@
       </div>
     </div>
 
-    <p class="pie">Organiza <b>IASD Las Condes</b> · <a id="verCompartir">Comparte e invita a un amigo</a></p>
+    <p class="pie"><a id="verCompartir">Comparte e invita a un amigo</a></p>
   </div>
 
   <!-- ===================== VISTA COMPARTIR ===================== -->
