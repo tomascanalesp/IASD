@@ -19,6 +19,7 @@
     --crema-2:#fbeede;
     --blanco:#ffffff;
     --linea:#efe3d3;
+    --verde-wa:#25d366;
     --sombra:0 24px 60px -28px rgba(60,30,10,.45);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -59,11 +60,16 @@
   h1 em{font-style:italic;color:var(--coral)}
   .sub{color:var(--tinta-suave);font-size:15.5px;max-width:34ch;margin-bottom:20px}
 
-  .meta{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:26px}
+  .meta{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:12px}
   .chip{display:inline-flex;align-items:center;gap:7px;background:var(--blanco);
     border:1px solid var(--linea);border-radius:999px;padding:8px 13px;
     font-size:13.5px;font-weight:500;box-shadow:0 6px 18px -14px rgba(60,30,10,.5)}
-  .chip svg{width:15px;height:15px;color:var(--coral)}
+  .chip svg{width:15px;height:15px;color:var(--coral);flex:none}
+  .direccion{display:flex;align-items:flex-start;gap:7px;font-size:13.5px;
+    color:var(--tinta-suave);margin-bottom:26px;line-height:1.4}
+  .direccion svg{width:15px;height:15px;color:var(--coral);flex:none;margin-top:2px}
+  .direccion a{color:var(--coral-osc);font-weight:600;text-decoration:none}
+  .direccion a:hover{text-decoration:underline}
 
   /* ---------- Tarjeta / formulario ---------- */
   .card{background:var(--blanco);border:1px solid var(--linea);border-radius:24px;
@@ -73,6 +79,7 @@
 
   label{display:block;font-size:13px;font-weight:600;margin:0 0 6px 2px}
   label .req{color:var(--coral)}
+  label .opt{color:#b9ad9d;font-weight:500}
   .field{margin-bottom:15px}
   input,select,textarea{
     width:100%;font-family:inherit;font-size:15.5px;color:var(--tinta);
@@ -93,6 +100,12 @@
   .btn:hover{transform:translateY(-2px);box-shadow:0 20px 36px -14px rgba(201,77,40,.75)}
   .btn:active{transform:translateY(0)}
   .btn[disabled]{opacity:.6;cursor:wait;transform:none}
+  .btn-wa{background:linear-gradient(135deg,#2ee06f,#1fae53);
+    box-shadow:0 14px 30px -12px rgba(31,174,83,.65)}
+  .btn-soft{background:#fff;color:var(--coral-osc);border:1.5px solid var(--linea);
+    box-shadow:none;font-size:16px}
+  .btn-soft:hover{box-shadow:0 10px 22px -14px rgba(60,30,10,.5)}
+  .btn .ic{display:inline-block;vertical-align:-2px;margin-right:6px}
 
   .pie{text-align:center;margin-top:18px;font-size:13px;color:var(--tinta-suave)}
   .pie a{color:var(--coral-osc);font-weight:600;text-decoration:none;cursor:pointer}
@@ -101,6 +114,14 @@
   .aviso{display:none;margin-top:14px;font-size:13px;text-align:center;
     color:var(--coral-osc);background:rgba(232,99,58,.08);border:1px solid rgba(232,99,58,.25);
     border-radius:12px;padding:10px 12px}
+
+  /* ---------- Logos organizadores ---------- */
+  .logos{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+    gap:18px;margin-top:22px}
+  .logos .rotulo{width:100%;text-align:center;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;font-weight:600;color:var(--tinta-suave);margin-bottom:2px}
+  .logos img{height:42px;width:auto;object-fit:contain;
+    opacity:.92;filter:saturate(1)}
 
   /* ---------- Éxito ---------- */
   .ok{display:none;text-align:center;padding:14px 6px 6px}
@@ -112,17 +133,17 @@
   .ok p{color:var(--tinta-suave);font-size:15px;max-width:30ch;margin:0 auto 18px}
   @keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
 
-  /* ---------- Vista QR ---------- */
-  .qr-view{display:none;text-align:center}
+  /* ---------- Vista Compartir ---------- */
+  .share-view{display:none;text-align:center}
   .qr-card{background:#fff;border:1px solid var(--linea);border-radius:24px;
     padding:26px 22px;box-shadow:var(--sombra)}
   .qr-card h2{font-family:"Fraunces",serif;font-weight:600;font-size:24px;margin-bottom:4px}
   .qr-card p{color:var(--tinta-suave);font-size:14px;margin-bottom:18px}
-  #qrbox{width:240px;height:240px;margin:0 auto 18px;display:grid;place-items:center;
-    background:#fff;border-radius:18px;padding:14px;border:1px solid var(--linea)}
-  #qrbox canvas,#qrbox img{border-radius:8px}
+  #invitePreview{margin:0 auto 16px;max-width:300px}
+  #invitePreview canvas{width:100%;height:auto;border-radius:16px;
+    border:1px solid var(--linea);box-shadow:0 16px 34px -22px rgba(60,30,10,.6)}
   .qr-url{font-size:12.5px;color:var(--tinta-suave);word-break:break-all;
-    background:var(--crema);border-radius:10px;padding:9px 12px;margin-bottom:16px}
+    background:var(--crema);border-radius:10px;padding:9px 12px;margin:14px 0 4px}
   .stagger{opacity:0;animation:rise .6s ease forwards}
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 </style>
@@ -140,10 +161,14 @@
     <p class="sub stagger" style="animation-delay:.14s">Inscríbete a nuestro próximo culto. Te esperamos para vivir juntos este momento.</p>
 
     <div class="meta stagger" style="animation-delay:.2s">
-      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><b id="mFecha">Sábado 28 de junio</b></span>
-      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b id="mHora">11:00 hrs</b></span>
-      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><b id="mLugar">Iglesia Las Condes</b></span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><b id="mFecha">Sábado 13 de junio</b></span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b id="mHora">10:00 hrs</b></span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><b id="mLugar">Iglesia Adventista de Las Condes</b></span>
     </div>
+    <p class="direccion stagger" style="animation-delay:.23s">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      <span id="mDireccion"></span>
+    </p>
 
     <div class="card stagger" style="animation-delay:.26s">
       <form id="formCulto">
@@ -157,13 +182,31 @@
 
         <div class="row">
           <div class="field">
-            <label for="telefono">Teléfono / WhatsApp <span class="req">*</span></label>
-            <input id="telefono" name="telefono" type="tel" required placeholder="+56 9 ..." />
+            <label for="telefono">Teléfono / WhatsApp <span class="opt">(opcional)</span></label>
+            <input id="telefono" name="telefono" type="tel" placeholder="+56 9 ..." />
           </div>
           <div class="field" style="max-width:38%">
-            <label for="edad">Edad <span class="req">*</span></label>
-            <input id="edad" name="edad" type="number" min="1" max="120" required placeholder="Ej: 17" />
+            <label for="edad">Edad <span class="opt">(opcional)</span></label>
+            <input id="edad" name="edad" type="number" min="1" max="120" placeholder="Ej: 17" />
           </div>
+        </div>
+
+        <div class="field">
+          <label for="escuela">¿Participas de alguna clase de Escuela Sabática? ¿Cuál? <span class="opt">(opcional)</span></label>
+          <select id="escuela" name="escuela">
+            <option value="">Selecciona…</option>
+            <option>Gteen</option>
+            <option>Jóvenes</option>
+            <option>Jóvenes adultos</option>
+            <option>Me gustaría participar de alguna clase</option>
+            <option>No me interesa</option>
+            <option value="Otros">Otros…</option>
+          </select>
+        </div>
+
+        <div class="field" id="campoOtro" style="display:none">
+          <label for="escuelaOtro">Cuéntanos cuál</label>
+          <input id="escuelaOtro" name="escuelaOtro" placeholder="Escribe tu clase o grupo" />
         </div>
 
         <button type="submit" class="btn" id="btnEnviar">Confirmar mi inscripción</button>
@@ -175,23 +218,46 @@
         <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></div>
         <h2>¡Inscripción enviada!</h2>
         <p>Gracias por confirmar. ¡Nos vemos en el culto Nuevas Generaciones! 🌅</p>
+        <button class="btn" id="btnOtra">Inscribir a otra persona</button>
+        <button class="btn btn-soft" id="btnInvitarOk">Compartir e invitar a un amigo</button>
       </div>
     </div>
 
-    <p class="pie">Organiza <b>Juventud Adventista</b> · <a id="verQR">Generar código QR para la invitación</a></p>
+    <!-- logos de los grupos organizadores -->
+    <div class="logos stagger" style="animation-delay:.32s">
+      <span class="rotulo">Organizan</span>
+      <img src="assets/maranata-class.png" alt="Maranata Class" onerror="this.style.display='none'">
+      <img src="assets/escuela-sabatica.png" alt="Escuela Sabática" onerror="this.style.display='none'">
+      <img src="assets/gteen.png" alt="Generación Teen" onerror="this.style.display='none'">
+      <img src="assets/ja.png" alt="Juventud Adventista" onerror="this.style.display='none'">
+    </div>
+
+    <p class="pie">Organiza <b>Juventud Adventista</b> · <a id="verCompartir">Comparte e invita a un amigo</a></p>
   </div>
 
-  <!-- ===================== VISTA QR ===================== -->
-  <div class="qr-view" id="vistaQR">
-    <div class="kicker" style="justify-content:center"><div class="emblema">JA</div><span>Código QR</span></div>
+  <!-- ===================== VISTA COMPARTIR ===================== -->
+  <div class="share-view" id="vistaCompartir">
+    <div class="kicker" style="justify-content:center"><div class="emblema">JA</div><span>Invita a un amigo</span></div>
     <div class="qr-card">
-      <h2>Código QR de inscripción</h2>
-      <p>Escanéalo para abrir este formulario. Listo para la invitación.</p>
-      <div id="qrbox"></div>
-      <div class="qr-url" id="qrUrl"></div>
-      <button class="btn" id="descargar">Descargar QR (PNG)</button>
+      <h2>Comparte la invitación</h2>
+      <p>Envíala por WhatsApp u otro chat. Incluye la imagen, los datos del culto y el link de inscripción.</p>
+      <div id="invitePreview"><canvas id="inviteCanvas"></canvas></div>
+
+      <button class="btn" id="btnCompartir">
+        <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+        Compartir invitación
+      </button>
+      <button class="btn btn-wa" id="btnWhatsapp">
+        <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.2.1.7-.1 1.3Z"/></svg>
+        Enviar por WhatsApp
+      </button>
+      <button class="btn btn-soft" id="btnDescargarInv">Descargar imagen</button>
+
+      <div class="qr-url" id="shareUrl"></div>
       <p class="pie"><a id="volver">← Volver al formulario</a></p>
     </div>
+    <!-- caja oculta donde se dibuja el QR antes de pegarlo en la imagen -->
+    <div id="qrTmp" style="position:absolute;left:-9999px;top:0"></div>
   </div>
 
 </div>
@@ -200,10 +266,7 @@
 /* ============================================================
    0) CONEXIÓN CON TU GOOGLE SHEET
    ------------------------------------------------------------
-   Pega aquí la URL del Web App de Google Apps Script.
-   (Sigue los pasos del README.md — sección "Conectar Google Sheets".)
-   Debe verse así:
-   https://script.google.com/macros/s/AKfy.....----/exec
+   URL del Web App de Google Apps Script (termina en /exec).
    ============================================================ */
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbzDJJ_sCCqdcnr0AJXTOlBtsipXqbZ2lNjo0fdxrutcTPTrXm_vpAmZubhuysHSU1Mc6w/exec";
 
@@ -211,16 +274,30 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbzDJJ_sCCqdcnr0AJXTOlB
    1) DATOS DEL EVENTO — cambia solo estos textos
    ============================================================ */
 const EVENTO = {
-  fecha: "Sábado 28 de junio",
-  hora:  "11:00 hrs",
-  lugar: "Iglesia Las Condes"
+  fecha: "Sábado 13 de junio",
+  hora:  "10:00 hrs",
+  lugar: "Iglesia Adventista de Las Condes",
+  direccion: "Av. Presidente Sebastián Piñera Echenique 415, 7570207 Las Condes, Región Metropolitana",
+  mapa:  "https://www.google.com/maps/search/?api=1&query=" +
+         encodeURIComponent("Iglesia Adventista Las Condes, Av. Presidente Sebastián Piñera Echenique 415, Las Condes")
 };
 document.getElementById("mFecha").textContent = EVENTO.fecha;
 document.getElementById("mHora").textContent  = EVENTO.hora;
 document.getElementById("mLugar").textContent = EVENTO.lugar;
+document.getElementById("mDireccion").innerHTML =
+  EVENTO.direccion + ' · <a href="' + EVENTO.mapa + '" target="_blank" rel="noopener">Ver en el mapa</a>';
 
 /* ============================================================
-   2) ENVÍO a Google Sheets (sin recargar la página)
+   2) MOSTRAR campo "Otros" de Escuela Sabática
+   ============================================================ */
+const selEscuela = document.getElementById("escuela");
+const campoOtro  = document.getElementById("campoOtro");
+selEscuela.addEventListener("change", () => {
+  campoOtro.style.display = (selEscuela.value === "Otros") ? "block" : "none";
+});
+
+/* ============================================================
+   3) ENVÍO a Google Sheets (sin recargar la página)
    ============================================================ */
 const form  = document.getElementById("formCulto");
 const ok    = document.getElementById("ok");
@@ -242,7 +319,14 @@ form.addEventListener("submit", async (e) => {
 
   btn.disabled = true; btn.textContent = "Enviando…"; aviso.style.display = "none";
 
+  // Armamos los datos; si eligió "Otros", usamos el texto que escribió.
   const data = new URLSearchParams(new FormData(form));
+  if(data.get("escuela") === "Otros"){
+    const otro = (data.get("escuelaOtro") || "").trim();
+    data.set("escuela", otro ? ("Otros: " + otro) : "Otros");
+  }
+  data.delete("escuelaOtro");
+
   try{
     // 'no-cors': Apps Script no devuelve cabeceras CORS, pero el dato igual se guarda.
     await fetch(ENDPOINT, { method:"POST", mode:"no-cors", body: data });
@@ -255,69 +339,167 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
+/* ---- "Inscribir a otra persona": limpia el form y vuelve a mostrarlo ---- */
+document.getElementById("btnOtra").addEventListener("click", () => {
+  form.reset();
+  campoOtro.style.display = "none";
+  ok.style.display = "none";
+  btn.disabled = false; btn.textContent = "Confirmar mi inscripción";
+  form.style.display = "block";
+  document.getElementById("nombre").focus();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
 /* ============================================================
-   3) GENERADOR DE QR (apunta a la URL real del formulario)
+   4) COMPARTIR / INVITAR (imagen + link para WhatsApp y otros)
    ============================================================ */
-const vistaForm = document.getElementById("vistaForm");
-const vistaQR   = document.getElementById("vistaQR");
-let qrListo = false;
+const vistaForm       = document.getElementById("vistaForm");
+const vistaCompartir  = document.getElementById("vistaCompartir");
 
 function urlLimpia(){
   return (location.origin + location.pathname).replace(/[#?].*$/,"");
 }
 
-function pintarQR(){
-  const box = document.getElementById("qrbox");
-  box.innerHTML = "";
-  const url = urlLimpia();
-  document.getElementById("qrUrl").textContent = url;
-  const qr = new QRCode(box, {
-    text: url, width: 212, height: 212,
-    colorDark:"#241c3b", colorLight:"#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
-  });
-  // emblema "JA" al centro
-  setTimeout(()=>{
-    const c = box.querySelector("canvas");
-    if(!c) return;
-    const ctx = c.getContext("2d");
-    const s = c.width, r = s*0.17, x = s/2;
-    ctx.fillStyle = "#fff";
-    ctx.beginPath(); ctx.arc(x, x, r+5, 0, Math.PI*2); ctx.fill();
-    const g = ctx.createLinearGradient(x-r,x-r,x+r,x+r);
-    g.addColorStop(0,"#e8633a"); g.addColorStop(1,"#f2a93b");
-    ctx.fillStyle = g;
-    ctx.beginPath(); ctx.arc(x, x, r, 0, Math.PI*2); ctx.fill();
-    ctx.fillStyle = "#fff"; ctx.font = `700 ${r*0.95}px Georgia, serif`;
-    ctx.textAlign="center"; ctx.textBaseline="middle";
-    ctx.fillText("JA", x, x+r*0.04);
-  }, 60);
-  qrListo = true;
+function textoInvitacion(url){
+  return '¡Te invito al culto "Nuevas Generaciones" de Juventud Adventista! 🌅\n\n' +
+         '🗓️ ' + EVENTO.fecha + ' · ' + EVENTO.hora + '\n' +
+         '📍 ' + EVENTO.lugar + '\n' + EVENTO.direccion + '\n\n' +
+         '✍️ Inscríbete aquí: ' + url;
 }
 
-function mostrarQR(){
+function envolverTexto(ctx, texto, x, y, maxW, lh){
+  const palabras = texto.split(' ');
+  let linea = '';
+  for(let i=0;i<palabras.length;i++){
+    const prueba = linea + palabras[i] + ' ';
+    if(ctx.measureText(prueba).width > maxW && i > 0){
+      ctx.fillText(linea.trim(), x, y); linea = palabras[i] + ' '; y += lh;
+    } else { linea = prueba; }
+  }
+  ctx.fillText(linea.trim(), x, y);
+  return y;
+}
+
+// Dibuja la imagen de invitación (con QR) y llama cb(canvas, url)
+function construirInvitacion(cb){
+  const url = urlLimpia();
+  const tmp = document.getElementById("qrTmp");
+  tmp.innerHTML = "";
+  new QRCode(tmp, { text:url, width:300, height:300,
+    colorDark:"#241c3b", colorLight:"#ffffff", correctLevel:QRCode.CorrectLevel.H });
+
+  setTimeout(() => {
+    const qrCanvas = tmp.querySelector("canvas");
+    const W = 1080, H = 1350;
+    const cv = document.getElementById("inviteCanvas");
+    cv.width = W; cv.height = H;
+    const x = cv.getContext("2d");
+
+    // fondo
+    const bg = x.createLinearGradient(0,0,W,H);
+    bg.addColorStop(0,"#fff7ec"); bg.addColorStop(1,"#fbe9d6");
+    x.fillStyle = bg; x.fillRect(0,0,W,H);
+    // resplandor superior
+    const glow = x.createRadialGradient(W*0.8,-80,40, W*0.8,-80, 700);
+    glow.addColorStop(0,"rgba(242,169,59,.45)"); glow.addColorStop(1,"rgba(242,169,59,0)");
+    x.fillStyle = glow; x.fillRect(0,0,W,H);
+    // barra superior
+    const tb = x.createLinearGradient(0,0,W,0);
+    tb.addColorStop(0,"#e8633a"); tb.addColorStop(1,"#f2a93b");
+    x.fillStyle = tb; x.fillRect(0,0,W,18);
+
+    x.textAlign = "center";
+    // kicker
+    x.fillStyle = "#c94d28"; x.font = "600 32px Georgia, serif";
+    x.fillText("JUVENTUD ADVENTISTA", W/2, 130);
+    // título
+    x.fillStyle = "#241c3b"; x.font = "700 100px Georgia, serif";
+    x.fillText("Nuevas", W/2, 258);
+    x.fillStyle = "#e8633a"; x.font = "italic 700 100px Georgia, serif";
+    x.fillText("Generaciones", W/2, 372);
+    // invitación
+    x.fillStyle = "#5b5470"; x.font = "400 40px Georgia, serif";
+    x.fillText("¡Estás invitado a nuestro culto!", W/2, 460);
+
+    // datos del evento
+    x.fillStyle = "#241c3b"; x.font = "600 48px Georgia, serif";
+    x.fillText(EVENTO.fecha + "  ·  " + EVENTO.hora, W/2, 560);
+    x.fillStyle = "#241c3b"; x.font = "600 40px Georgia, serif";
+    x.fillText(EVENTO.lugar, W/2, 625);
+    x.fillStyle = "#5b5470"; x.font = "400 34px Georgia, serif";
+    envolverTexto(x, EVENTO.direccion, W/2, 680, 920, 44);
+
+    // QR centrado
+    if(qrCanvas){
+      const qs = 300, qx = W/2 - qs/2, qy = 800;
+      x.fillStyle = "#fff";
+      x.fillRect(qx-18, qy-18, qs+36, qs+36);
+      x.drawImage(qrCanvas, qx, qy, qs, qs);
+    }
+
+    // pie con link
+    x.fillStyle = "#5b5470"; x.font = "400 32px Georgia, serif";
+    x.fillText("Escanea el código o entra a:", W/2, 1180);
+    x.fillStyle = "#c94d28"; x.font = "600 30px Georgia, serif";
+    envolverTexto(x, url, W/2, 1228, 1000, 38);
+
+    cb && cb(cv, url);
+  }, 130);
+}
+
+function mostrarCompartir(){
   vistaForm.style.display = "none";
-  vistaQR.style.display = "block";
-  if(!qrListo) pintarQR();
+  vistaCompartir.style.display = "block";
+  window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+  construirInvitacion((cv, url) => {
+    document.getElementById("shareUrl").textContent = url;
+  });
 }
 function mostrarForm(){
-  vistaQR.style.display = "none";
+  vistaCompartir.style.display = "none";
   vistaForm.style.display = "block";
 }
 
-document.getElementById("verQR").addEventListener("click", mostrarQR);
+document.getElementById("verCompartir").addEventListener("click", mostrarCompartir);
+document.getElementById("btnInvitarOk").addEventListener("click", mostrarCompartir);
 document.getElementById("volver").addEventListener("click", mostrarForm);
 
-// también accesible directo con  ...tu-url/#qr
-if(location.hash.toLowerCase() === "#qr") mostrarQR();
+// también accesible directo con  ...tu-url/#compartir  (o el viejo #qr)
+const h = location.hash.toLowerCase();
+if(h === "#compartir" || h === "#qr") mostrarCompartir();
 
-document.getElementById("descargar").addEventListener("click", ()=>{
-  const c = document.querySelector("#qrbox canvas");
-  if(!c) return;
+// Botón principal: compartir imagen + texto por el menú nativo del celular
+document.getElementById("btnCompartir").addEventListener("click", () => {
+  construirInvitacion((cv, url) => {
+    const texto = textoInvitacion(url);
+    cv.toBlob(async (blob) => {
+      const file = new File([blob], "invitacion-nuevas-generaciones.png", { type:"image/png" });
+      if(navigator.canShare && navigator.canShare({ files:[file] })){
+        try{ await navigator.share({ files:[file], text: texto }); }
+        catch(e){ /* el usuario canceló */ }
+      } else {
+        // Escritorio o navegador sin soporte: descargamos la imagen y abrimos WhatsApp con el texto
+        descargarInvitacion(cv);
+        window.open("https://wa.me/?text=" + encodeURIComponent(texto), "_blank");
+      }
+    }, "image/png");
+  });
+});
+
+// WhatsApp: abre el chat con el texto + link (la imagen se adjunta aparte si se desea)
+document.getElementById("btnWhatsapp").addEventListener("click", () => {
+  const texto = textoInvitacion(urlLimpia());
+  window.open("https://wa.me/?text=" + encodeURIComponent(texto), "_blank");
+});
+
+function descargarInvitacion(cv){
   const a = document.createElement("a");
-  a.download = "qr-culto-nuevas-generaciones.png";
-  a.href = c.toDataURL("image/png");
+  a.download = "invitacion-nuevas-generaciones.png";
+  a.href = cv.toDataURL("image/png");
   a.click();
+}
+document.getElementById("btnDescargarInv").addEventListener("click", () => {
+  descargarInvitacion(document.getElementById("inviteCanvas"));
 });
 </script>
 </body>

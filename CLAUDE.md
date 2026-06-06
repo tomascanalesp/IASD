@@ -26,13 +26,18 @@ invitación (la arma Kate, comunicaciones). El mismo sitio genera ese QR.
 ## Estructura del archivo
 
 - `ENDPOINT`: URL del Google Apps Script (no hardcodear, se pega tras desplegar).
-- `EVENTO` (objeto JS): único lugar a editar para **fecha, hora y lugar**.
-- `<form id="formCulto">`: campos **nombre*, telefono*, edad***. Más un honeypot
-  oculto `bot-field` (anti-spam) que, si viene lleno, descarta el envío.
+- `EVENTO` (objeto JS): único lugar a editar para **fecha, hora, lugar, dirección
+  y enlace de mapa**.
+- `<form id="formCulto">`: **nombre*** (único obligatorio) + telefono, edad y
+  `escuela` (select Escuela Sabática, con campo "Otros" que aparece al elegirlo),
+  todos opcionales. Más un honeypot oculto `bot-field` (anti-spam).
 - Envío por `fetch` `no-cors` a `ENDPOINT` (urlencoded) → muestra `#ok` sin recargar.
-- `pintarQR()`: genera el QR sobre `location.origin + pathname` (sin hash/query),
-  nivel de corrección H, y dibuja el emblema "JA" al centro del canvas.
-- Vista QR accesible desde el link del pie o agregando `#qr` a la URL.
+  El `#ok` ofrece "Inscribir a otra persona" (resetea el form) y "Compartir".
+- Logos del pie ("Organizan") se cargan desde `assets/` (maranata-class.png,
+  escuela-sabatica.png, gteen.png, ja.png); con `onerror` se ocultan si faltan.
+- Vista **Compartir** (`#compartir`): `construirInvitacion()` dibuja en un canvas
+  una imagen de invitación (datos del evento + QR) y permite compartirla por el
+  menú nativo (`navigator.share` con `files`), WhatsApp (`wa.me`) o descargarla.
 
 ## Convenciones
 
@@ -53,11 +58,12 @@ Ver `README.md` (pasos detallados). En resumen:
 
 ## Pendientes
 
-- [ ] Cargar fecha/hora/lugar reales del culto.
-- [ ] Pegar la URL real de Google Apps Script en `ENDPOINT`.
+- [x] Cargar fecha/hora/lugar reales del culto (13/06/2026, 10:00, Las Condes).
+- [x] Pegar la URL real de Google Apps Script en `ENDPOINT`.
+- [ ] Subir los 4 logos a `assets/` (ver `assets/LEEME-logos.md`).
+- [ ] Activar GitHub Pages (Settings → Pages → rama `main`, root).
 - [ ] (Opcional) Notificación por correo en el script (`MailApp.sendEmail`) al
       llegar cada inscripción.
-- [ ] (Opcional) Reemplazar emblema CSS por el logo JA oficial.
 - [ ] (Opcional) Validación de teléfono chileno (+56 9 ...).
 
 ## Notas

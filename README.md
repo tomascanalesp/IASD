@@ -58,7 +58,7 @@ Reemplaza el texto por tu URL `/exec`. Guarda.
 
 1. Abre tu link de GitHub Pages, llena el formulario y envía.
 2. Revisa tu Google Sheet: debe aparecer una fila nueva con
-   **Fecha · Nombre · Teléfono · Edad**.
+   **Fecha · Nombre · Teléfono · Edad · Escuela Sabática**.
 3. ¿Sale el aviso "Falta conectar..."? → no pegaste la URL en el paso 2.
 4. ¿No llega la fila? → vuelve a **Implementar → Gestionar implementaciones**
    y confirma que "Quién tiene acceso" = **Cualquier usuario**.
@@ -71,17 +71,29 @@ En `index.html`, cambia solo estos textos:
 
 ```js
 const EVENTO = {
-  fecha: "Sábado 28 de junio",
-  hora:  "11:00 hrs",
-  lugar: "Iglesia Las Condes"
+  fecha: "Sábado 13 de junio",
+  hora:  "10:00 hrs",
+  lugar: "Iglesia Adventista de Las Condes",
+  direccion: "Av. Presidente Sebastián Piñera Echenique 415, 7570207 Las Condes, Región Metropolitana"
 };
 ```
 
-## Código QR
+## Logos de los grupos
 
-El formulario incluye un generador de QR (enlace al pie, o agregando `#qr` a la
-URL). Genera el QR apuntando a tu link de GitHub Pages, descárgalo como PNG y
-pásaselo a Kate para la invitación.
+Los logos del pie ("Organizan") se cargan desde la carpeta `assets/`.
+Pon ahí los archivos `maranata-class.png`, `escuela-sabatica.png`, `gteen.png`
+y `ja.png` (ver `assets/LEEME-logos.md`). Si falta alguno, no se muestra.
+
+## Compartir / invitar a un amigo
+
+El enlace del pie **"Comparte e invita a un amigo"** (o agregando `#compartir`
+a la URL) abre una vista que genera una **imagen de invitación** con los datos
+del culto + un QR, y permite:
+
+- **Compartir invitación**: usa el menú nativo del celular (WhatsApp, Instagram,
+  Telegram, etc.) y adjunta la imagen.
+- **Enviar por WhatsApp**: abre WhatsApp con el texto + link de inscripción.
+- **Descargar imagen**: guarda el PNG para usarlo en la invitación impresa.
 
 ## Privacidad
 

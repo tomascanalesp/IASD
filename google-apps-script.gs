@@ -19,8 +19,8 @@ function doPost(e) {
     // Primera vez: crea la hoja con encabezados
     if (!sheet) {
       sheet = ss.insertSheet(SHEET_NAME);
-      sheet.appendRow(['Fecha de envío', 'Nombre', 'Teléfono', 'Edad']);
-      sheet.getRange('A1:D1').setFontWeight('bold');
+      sheet.appendRow(['Fecha de envío', 'Nombre', 'Teléfono', 'Edad', 'Escuela Sabática']);
+      sheet.getRange('A1:E1').setFontWeight('bold');
     }
 
     const p = (e && e.parameter) ? e.parameter : {};
@@ -28,7 +28,8 @@ function doPost(e) {
       new Date(),
       p.nombre   || '',
       p.telefono || '',
-      p.edad     || ''
+      p.edad     || '',
+      p.escuela  || ''
     ]);
 
     return ContentService
