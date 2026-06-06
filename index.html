@@ -354,7 +354,7 @@ const EVENTO = {
   fecha: "Sábado 13 de junio",
   hora:  "10:00 hrs",
   lugar: "Iglesia Adventista de Las Condes",
-  direccion: "Av. Presidente Sebastián Piñera Echenique 415, 7570207 Las Condes, Región Metropolitana",
+  direccion: "Av. Presidente Sebastián Piñera Echenique 415",
   mapa:  "https://www.google.com/maps/search/?api=1&query=" +
          encodeURIComponent("Iglesia Adventista Las Condes, Av. Presidente Sebastián Piñera Echenique 415, Las Condes")
 };
@@ -447,7 +447,8 @@ function linkPublico(){
 function textoInvitacion(url){
   return '¡Te invito al culto "Nuevas Generaciones" de Juventud Adventista!\n\n' +
          '🗓️ ' + EVENTO.fecha + ' · ' + EVENTO.hora + '\n' +
-         '📍 ' + EVENTO.lugar + '\n' + EVENTO.direccion + '\n\n' +
+         '📍 ' + EVENTO.lugar + '\n' + EVENTO.direccion + '\n' +
+         '🗺️ Ver en el mapa: ' + EVENTO.mapa + '\n\n' +
          '✍️ Inscríbete aquí: ' + url;
 }
 
