@@ -10,23 +10,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 :root{
-    --navy:#274c72;
-    --navy-2:#1f3e5d;
-    --navy-3:#16304a;
-    --gold:#cfe1f2;
-    --gold-deep:#356ea0;
-    --sky:#5e96c8;
-    --sky-deep:#356ea0;
-    --red:#c2473f;
-    --cream:#f2f5f8;
-    --cream-2:#eaeff5;
+    --navy:#2b2a6b;
+    --navy-2:#232158;
+    --navy-3:#181743;
+    --gold:#ffce1f;
+    --gold-deep:#eaa100;
+    --gold-soft:#ffe08a;
+    --sky:#2f93da;
+    --sky-deep:#1f73b8;
+    --red:#d8463a;
+    --cream:#f5f4fb;
+    --cream-2:#edecf7;
     --paper:#ffffff;
-    --ink:#1e2c3b;
-    --ink-soft:#5d6b7a;
-    --line:#e2e8ef;
+    --ink:#20243a;
+    --ink-soft:#5d6376;
+    --line:#e6e6f1;
     --verde-wa:#25d366;
-    --sombra:0 30px 70px -34px rgba(20,35,55,.45);
-    --sombra-sm:0 12px 30px -20px rgba(20,35,55,.4);
+    --sombra:0 30px 70px -34px rgba(25,24,66,.45);
+    --sombra-sm:0 12px 30px -20px rgba(25,24,66,.4);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{min-height:100%}
@@ -34,9 +35,9 @@
     font-family:"DM Sans",sans-serif;
     color:var(--ink);
     background:
-      radial-gradient(115% 70% at 88% -8%, rgba(47,106,160,.10), transparent 52%),
-      radial-gradient(100% 60% at 4% 2%, rgba(47,106,160,.08), transparent 48%),
-      #f4f6f9;
+      radial-gradient(120% 75% at 90% -10%, rgba(255,206,31,.18), transparent 55%),
+      radial-gradient(110% 70% at 4% 0%, rgba(47,147,218,.12), transparent 50%),
+      #f5f6fb;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
     display:flex;align-items:flex-start;justify-content:center;
@@ -52,7 +53,7 @@
   .hero{
     position:relative;overflow:hidden;border-radius:22px;
     background:
-      radial-gradient(120% 130% at 95% -30%, rgba(94,150,200,.5), transparent 58%),
+      radial-gradient(120% 130% at 100% -28%, rgba(255,206,31,.38), transparent 58%),
       linear-gradient(150deg, var(--navy) 0%, var(--navy-2) 60%, var(--navy-3) 100%);
     color:#fff;padding:18px 22px 20px;box-shadow:var(--sombra);
     isolation:isolate;
@@ -60,7 +61,7 @@
   /* arcos suaves decorativos */
   .hero .arcs{position:absolute;top:-90px;right:-80px;width:240px;height:240px;z-index:0;
     opacity:.45;pointer-events:none}
-  .hero .arcs circle{fill:none;stroke:#bcd6ee;stroke-width:1.2;opacity:.5}
+  .hero .arcs circle{fill:none;stroke:#ffd86b;stroke-width:1.2;opacity:.55}
   .hero > *{position:relative;z-index:1}
 
   .hero-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
@@ -73,14 +74,14 @@
     font-weight:600;color:#bcd6ee}
 
   .eyebrow{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
-    color:#bcd6ee;margin-bottom:7px;display:flex;align-items:center;gap:10px}
-  .eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(188,214,238,.5),transparent)}
+    color:var(--gold);margin-bottom:7px;display:flex;align-items:center;gap:10px}
+  .eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(255,206,31,.6),transparent)}
 
   .masthead{font-family:"Fraunces",serif;font-weight:600;line-height:1;
     letter-spacing:-.02em;margin-bottom:2px}
   .masthead .l1{font-size:clamp(30px,8.2vw,46px);color:#fff}
   .masthead .l2{font-style:italic;font-weight:600;
-    font-size:clamp(30px,8.2vw,46px);color:#cfe1f2;}
+    font-size:clamp(30px,8.2vw,46px);color:var(--gold);}
   .hero-lede{display:none}
 
   /* ===================== META ===================== */
@@ -90,8 +91,8 @@
     border:1px solid var(--line);border-radius:999px;padding:9px 15px;
     font-size:13.5px;font-weight:600;color:var(--navy);box-shadow:var(--sombra-sm)}
   .chip svg{width:16px;height:16px;flex:none}
-  .chip.c-date svg{color:var(--sky-deep)}
-  .chip.c-time svg{color:var(--sky-deep)}
+  .chip.c-date svg{color:var(--gold-deep)}
+  .chip.c-time svg{color:var(--sky)}
   .chip.c-place svg{color:var(--sky-deep)}
 
   .direccion{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;
@@ -105,7 +106,7 @@
     padding:30px 24px 26px;box-shadow:var(--sombra);position:relative;overflow:hidden;
     margin-top:22px}
   .card::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;
-    background:linear-gradient(90deg,var(--navy),var(--sky-deep))}
+    background:linear-gradient(90deg,var(--navy),var(--sky) 55%,var(--gold))}
 
   .form-head{margin-bottom:20px}
   .form-head h2{font-family:"Fraunces",serif;font-weight:600;font-size:24px;
@@ -130,7 +131,7 @@
 
   .btn{width:100%;border:none;cursor:pointer;font-family:"Fraunces",serif;
     font-size:18.5px;font-weight:600;border-radius:14px;padding:15px;margin-top:8px;
-    color:#fff;background:linear-gradient(135deg,var(--navy),var(--sky-deep));
+    color:#fff;background:linear-gradient(135deg,var(--navy),var(--sky));
     box-shadow:0 16px 32px -16px rgba(31,62,93,.85);transition:transform .12s, box-shadow .12s}
   .btn:hover{transform:translateY(-2px);box-shadow:0 22px 40px -18px rgba(31,62,93,.9)}
   .btn:active{transform:translateY(0)}
@@ -185,7 +186,7 @@
   .qr-card{background:#fff;border:1px solid var(--line);border-radius:26px;
     padding:30px 24px;box-shadow:var(--sombra);position:relative;overflow:hidden;text-align:center}
   .qr-card::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;
-    background:linear-gradient(90deg,var(--navy),var(--sky-deep))}
+    background:linear-gradient(90deg,var(--navy),var(--sky) 55%,var(--gold))}
   .qr-card h2{font-family:"Fraunces",serif;font-weight:600;font-size:26px;margin-bottom:4px;
     letter-spacing:-.01em}
   .qr-card > p{color:var(--ink-soft);font-size:14px;margin-bottom:20px;line-height:1.5}
@@ -463,7 +464,7 @@ function construirInvitacion(cb){
   const tmp = document.getElementById("qrTmp");
   tmp.innerHTML = "";
   new QRCode(tmp, { text:url, width:300, height:300,
-    colorDark:"#1f3e5d", colorLight:"#ffffff", correctLevel:QRCode.CorrectLevel.H });
+    colorDark:"#21204e", colorLight:"#ffffff", correctLevel:QRCode.CorrectLevel.H });
 
   setTimeout(() => {
     const qrCanvas = tmp.querySelector("canvas");
@@ -474,17 +475,17 @@ function construirInvitacion(cb){
 
     // ----- fondo azul con degradado -----
     const bg = x.createLinearGradient(0,0,W,H);
-    bg.addColorStop(0,"#2a5078"); bg.addColorStop(.55,"#1f3e5d"); bg.addColorStop(1,"#142a40");
+    bg.addColorStop(0,"#34327f"); bg.addColorStop(.55,"#232158"); bg.addColorStop(1,"#15143c");
     x.fillStyle = bg; x.fillRect(0,0,W,H);
     // resplandor superior
     const glow = x.createRadialGradient(W*0.9,-60,40, W*0.9,-60, 780);
-    glow.addColorStop(0,"rgba(120,170,215,.5)"); glow.addColorStop(1,"rgba(120,170,215,0)");
+    glow.addColorStop(0,"rgba(255,206,31,.42)"); glow.addColorStop(1,"rgba(255,206,31,0)");
     x.fillStyle = glow; x.fillRect(0,0,W,H);
     // arcos suaves
-    x.strokeStyle = "rgba(188,214,238,.22)"; x.lineWidth = 3;
+    x.strokeStyle = "rgba(255,216,107,.26)"; x.lineWidth = 3;
     [120,230,340,450].forEach(r=>{ x.beginPath(); x.arc(W*0.9,-40,r,0,Math.PI*2); x.stroke(); });
     // barra superior
-    x.fillStyle = "#bcd6ee"; x.fillRect(0,0,W,14);
+    x.fillStyle = "#ffce1f"; x.fillRect(0,0,W,14);
 
     x.textAlign = "center";
     // logo IASD sobre círculo blanco
@@ -495,12 +496,12 @@ function construirInvitacion(cb){
       x.drawImage(logoIASD, W/2 - lw/2, cy - lh/2, lw, lh);
     }
     // kicker
-    x.fillStyle = "#bcd6ee"; x.font = "700 28px Georgia, serif";
+    x.fillStyle = "#ffce1f"; x.font = "700 28px Georgia, serif";
     x.fillText("I A S D   L A S   C O N D E S", W/2, 268);
     // título
     x.fillStyle = "#ffffff"; x.font = "600 110px Georgia, serif";
     x.fillText("Nuevas", W/2, 380);
-    x.fillStyle = "#cfe1f2"; x.font = "italic 600 102px Georgia, serif";
+    x.fillStyle = "#ffd23a"; x.font = "italic 600 102px Georgia, serif";
     x.fillText("Generaciones", W/2, 490);
     // invitación
     x.fillStyle = "#cdd6ea"; x.font = "400 38px Georgia, serif";
@@ -528,7 +529,7 @@ function construirInvitacion(cb){
     // pie con link
     x.fillStyle = "#a9b6cf"; x.font = "400 32px Georgia, serif";
     x.fillText("Escanea el código o entra a:", W/2, 1212);
-    x.fillStyle = "#cfe1f2"; x.font = "600 30px Georgia, serif";
+    x.fillStyle = "#ffe08a"; x.font = "600 30px Georgia, serif";
     envolverTexto(x, url, W/2, 1258, 1000, 38);
 
     cb && cb(cv, url);
