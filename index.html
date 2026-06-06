@@ -263,6 +263,11 @@
    ============================================================ */
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbzDJJ_sCCqdcnr0AJXTOlBtsipXqbZ2lNjo0fdxrutcTPTrXm_vpAmZubhuysHSU1Mc6w/exec";
 
+/* Link "bonito" para mostrar en el QR y en la invitación que se comparte
+   (por ejemplo un acortador como https://tinyurl.com/culto-ng).
+   Si lo dejas vacío, se usa la dirección actual del navegador. */
+const LINK_PUBLICO = "";
+
 /* ============================================================
    1) DATOS DEL EVENTO — cambia solo estos textos
    ============================================================ */
@@ -352,6 +357,10 @@ const vistaCompartir  = document.getElementById("vistaCompartir");
 function urlLimpia(){
   return (location.origin + location.pathname).replace(/[#?].*$/,"");
 }
+// Link que se muestra/comparte: el "bonito" si está definido, si no la URL real.
+function linkPublico(){
+  return (LINK_PUBLICO || "").trim() || urlLimpia();
+}
 
 function textoInvitacion(url){
   return '¡Te invito al culto "Nuevas Generaciones" de Juventud Adventista! 🌅\n\n' +
@@ -375,7 +384,7 @@ function envolverTexto(ctx, texto, x, y, maxW, lh){
 
 // Dibuja la imagen de invitación (con QR) y llama cb(canvas, url)
 function construirInvitacion(cb){
-  const url = urlLimpia();
+  const url = linkPublico();
   const tmp = document.getElementById("qrTmp");
   tmp.innerHTML = "";
   new QRCode(tmp, { text:url, width:300, height:300,
